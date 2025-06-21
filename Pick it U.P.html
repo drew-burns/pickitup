@@ -1,0 +1,635 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pick it U.P. - Marquette Collective</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        :root {
+            --iron-ore: #8B4513;
+            --iron-dark: #5D2F0A;
+            --deep-blue: #1a2332;
+            --navy-blue: #2c3e50;
+            --steel-blue: #34495e;
+            --light-iron: #CD853F;
+            --off-white: #f8f9fa;
+            --light-gray: #e9ecef;
+        }
+
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap');
+
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--off-white);
+            background: var(--deep-blue);
+            overflow-x: hidden;
+        }
+
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 35, 50, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(139, 69, 19, 0.2);
+        }
+
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--light-iron);
+            letter-spacing: 2px;
+        }
+
+
+        .logo .accent {
+            color: var(--iron-ore);
+            font-weight: 600;
+        }
+
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--off-white);
+            font-weight: 300;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+            letter-spacing: 1px;
+        }
+
+
+        .nav-links a:hover {
+            color: var(--light-iron);
+        }
+
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -8px;
+            left: 0;
+            background: var(--iron-ore);
+            transition: width 0.3s ease;
+        }
+
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--navy-blue) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(139, 69, 19, 0.1) 0%, transparent 50%);
+        }
+
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: var(--off-white);
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeUp 1.2s ease forwards 0.3s;
+        }
+
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            color: var(--light-iron);
+            font-weight: 300;
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: fadeUp 1.2s ease forwards 0.6s;
+        }
+
+
+        .location {
+            font-size: 0.9rem;
+            color: var(--iron-ore);
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeUp 1.2s ease forwards 0.9s;
+        }
+
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* Sections */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+
+        .section h2 {
+            font-size: 2.8rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--off-white);
+            letter-spacing: 1px;
+        }
+
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: var(--iron-ore);
+            margin: 2rem auto 0;
+        }
+
+
+        /* Mission Section */
+        .mission {
+            background: var(--navy-blue);
+            margin: 0 -2rem;
+            padding: 6rem 2rem;
+        }
+
+
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+
+        .mission p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--off-white);
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+
+        .mission .highlight {
+            color: var(--light-iron);
+            font-weight: 400;
+        }
+
+
+        /* Values Cards */
+        .values-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+
+        .value-card {
+            background: rgba(52, 73, 94, 0.3);
+            padding: 3rem 2rem;
+            border-radius: 4px;
+            transition: all 0.4s ease;
+            border-left: 3px solid transparent;
+            backdrop-filter: blur(10px);
+        }
+
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            border-left-color: var(--iron-ore);
+            background: rgba(52, 73, 94, 0.5);
+        }
+
+
+        .value-card h3 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--light-iron);
+            letter-spacing: 1px;
+        }
+
+
+        .value-card p {
+            color: var(--off-white);
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, var(--steel-blue) 0%, var(--navy-blue) 100%);
+            margin: 0 -2rem;
+            padding: 6rem 2rem;
+        }
+
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: var(--light-iron);
+            letter-spacing: 1px;
+        }
+
+
+        .about-text p {
+            color: var(--off-white);
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+
+        .about-visual {
+            height: 300px;
+            background: linear-gradient(45deg, var(--iron-ore) 0%, var(--iron-dark) 100%);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .about-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.05) 10px,
+                rgba(255, 255, 255, 0.05) 20px
+            );
+        }
+
+
+        .about-visual span {
+            font-size: 3rem;
+            color: var(--off-white);
+            z-index: 2;
+        }
+
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+        }
+
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+
+        .contact-info {
+            background: rgba(52, 73, 94, 0.2);
+            padding: 3rem;
+            border-radius: 4px;
+            border: 1px solid rgba(139, 69, 19, 0.2);
+        }
+
+
+        .contact-info h3 {
+            font-size: 1.6rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: var(--light-iron);
+            letter-spacing: 1px;
+        }
+
+
+        .contact-info p {
+            color: var(--off-white);
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+
+        .contact-info a {
+            color: var(--light-iron);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+
+        .contact-info a:hover {
+            color: var(--iron-ore);
+        }
+
+
+        /* Footer */
+        .footer {
+            background: var(--iron-dark);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(139, 69, 19, 0.3);
+        }
+
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+
+        .footer p {
+            color: var(--light-gray);
+            font-weight: 300;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+
+            .hero h1 {
+                font-size: 2.8rem;
+                letter-spacing: 2px;
+            }
+
+
+            .hero .tagline {
+                font-size: 1rem;
+            }
+
+
+            .section {
+                padding: 4rem 1rem;
+            }
+
+
+            .section h2 {
+                font-size: 2.2rem;
+            }
+
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+
+            .about-visual {
+                height: 200px;
+            }
+
+
+            .values-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+
+            .value-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+
+        ::-webkit-scrollbar-track {
+            background: var(--deep-blue);
+        }
+
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--iron-ore);
+            border-radius: 4px;
+        }
+
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--light-iron);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Pick it <span class="accent">U.P.</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#mission">Mission</a></li>
+                <li><a href="#values">Values</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Pick it U.P.</h1>
+            <p class="tagline">Concerted team & solo efforts to pick up litter in the Upper Peninsula</p>
+            <p class="location">Marquette, Michigan</p>
+        </div>
+    </section>
+
+
+    <!-- Petition Section -->
+    <section class="section" id="petition">
+        <h2>Petition to ban cigarettes in Marquette, Michigan</h2>
+        <div class="mission-content fade-in">
+            <p>Cigarette smokers are renowned for throwing their used drug anywhere but the trash, as well as known for making others breathe their drug, including children. Their open air drug usage is not just toxic to them, but others as well. While their little ciggies represent just one part of the pie chart <em>collective</em>-ly collected, it's a large share represented everywhere, because just as cigarette smokers can be trusted to not care about the air others breathe, they consistently don't care about our breathtaking landscapes. Marquette may now have "recycled cigarettes" canisters, but the type of people to smoke cigarettes are precisely the body of people least likely to use them.<br><br>Voice your support for banning the sale of filtered cigarettes, in Marquette, Michigan!</p>
+        </div>
+    </section>
+
+
+    <!-- Mission Section -->
+    <section class="mission" id="mission">
+        <div class="mission-content fade-in">
+            <h2>Contact</h2>
+            <p>loveisgr8erthanhate@gmail.com</p>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Pick it U.P. Collective, 2020 - </p>
+        </div>
+    </footer>
+
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(26, 35, 50, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                navbar.style.background = 'rgba(26, 35, 50, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+
+        // Subtle parallax effect for hero
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const rate = scrolled * -0.5;
+            hero.style.transform = `translateY(${rate}px)`;
+        });
+    </script>
+</body>
+</html>
